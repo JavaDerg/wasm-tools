@@ -2,6 +2,7 @@ use crate::core::{HeapType, V128Const};
 use crate::kw;
 use crate::parser::{Cursor, Parse, Parser, Peek, Result};
 use crate::token::{Float32, Float64, Index};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// Expression that can be used inside of `invoke` expressions for core wasm
 /// functions.

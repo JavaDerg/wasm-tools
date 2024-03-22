@@ -17,3 +17,6 @@ workspace = true
 
 [dependencies]
 wast = { workspace = true }
+
+[features]
+std = ["wast/std"]

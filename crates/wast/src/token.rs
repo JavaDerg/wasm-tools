@@ -5,9 +5,11 @@
 use crate::lexer::{Float, Lexer, TokenKind};
 use crate::parser::{Cursor, Parse, Parser, Peek, Result};
 use crate::{annotation, Error};
-use std::fmt;
-use std::hash::{Hash, Hasher};
-use std::str;
+use core::fmt;
+use core::hash::{Hash, Hasher};
+use core::str;
+use alloc::format;
+use alloc::string::{String, ToString};
 
 /// A position in the original source stream, used to render errors.
 #[derive(Copy, Clone, Debug, PartialOrd, Ord, PartialEq, Eq, Hash)]

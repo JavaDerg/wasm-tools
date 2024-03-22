@@ -5,6 +5,7 @@ use crate::names::Namespace;
 use crate::token::Span;
 use crate::token::{Id, Index};
 use crate::Error;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// Resolve the fields of a component and everything nested within it, changing
 /// `Index::Id` to `Index::Num` and expanding alias syntax sugar.

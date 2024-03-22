@@ -2,6 +2,7 @@ use crate::core::*;
 use crate::parser::{Parse, Parser, Result};
 use crate::token::{Id, Index, NameAnnotation, Span};
 use crate::{annotation, kw};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 pub use crate::core::resolve::Names;
 

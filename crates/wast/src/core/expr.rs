@@ -4,7 +4,8 @@ use crate::encode::Encode;
 use crate::kw;
 use crate::parser::{Cursor, Parse, Parser, Result};
 use crate::token::*;
-use std::mem;
+use core::mem;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// An expression, or a list of instructions, in the WebAssembly text format.
 ///

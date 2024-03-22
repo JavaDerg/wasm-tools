@@ -4,8 +4,9 @@ use crate::gensym;
 use crate::kw;
 use crate::token::Id;
 use crate::token::{Index, Span};
-use std::collections::HashMap;
-use std::mem;
+use hashbrown::HashMap;
+use core::mem;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// Performs an AST "expansion" pass over the component fields provided.
 ///

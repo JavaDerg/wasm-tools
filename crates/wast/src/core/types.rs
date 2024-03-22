@@ -2,7 +2,8 @@ use crate::core::*;
 use crate::kw;
 use crate::parser::{Cursor, Parse, Parser, Peek, Result};
 use crate::token::{Id, Index, LParen, NameAnnotation, Span};
-use std::mem;
+use core::mem;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// The value types for a wasm module.
 #[allow(missing_docs)]

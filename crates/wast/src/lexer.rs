@@ -26,11 +26,13 @@
 
 use crate::token::Span;
 use crate::Error;
-use std::borrow::Cow;
-use std::char;
-use std::fmt;
-use std::slice;
-use std::str;
+use alloc::borrow::Cow;
+use core::char;
+use core::fmt;
+use core::slice;
+use core::str;
+use alloc::vec::Vec;
+use alloc::string::{String, ToString};
 
 /// A structure used to lex the s-expression syntax of WAT files.
 ///

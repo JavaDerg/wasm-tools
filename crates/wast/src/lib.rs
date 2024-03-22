@@ -48,6 +48,12 @@
 
 #![deny(missing_docs, rustdoc::broken_intra_doc_links)]
 
+#![no_std]
+
+extern crate alloc;
+#[cfg(feature = "std")]
+extern crate std;
+
 /// A macro to create a custom keyword parser.
 ///
 /// This macro is invoked in one of two forms:

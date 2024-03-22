@@ -1,3 +1,5 @@
+use alloc::{vec::Vec, boxed::Box};
+
 pub(crate) trait Encode {
     fn encode(&self, e: &mut Vec<u8>);
 }

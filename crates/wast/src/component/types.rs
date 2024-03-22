@@ -7,6 +7,7 @@ use crate::parser::{Parse, Parser, Result};
 use crate::token::Index;
 use crate::token::LParen;
 use crate::token::{Id, NameAnnotation, Span};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// A core type declaration.
 #[derive(Debug)]

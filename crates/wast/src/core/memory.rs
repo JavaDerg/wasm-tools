@@ -2,6 +2,7 @@ use crate::core::*;
 use crate::kw;
 use crate::parser::{Lookahead1, Parse, Parser, Peek, Result};
 use crate::token::*;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// A defined WebAssembly memory instance inside of a module.
 #[derive(Debug)]

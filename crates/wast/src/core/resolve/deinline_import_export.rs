@@ -1,7 +1,8 @@
 use crate::core::*;
 use crate::gensym;
 use crate::token::{Id, Index, Span};
-use std::mem;
+use core::mem;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 pub fn run(fields: &mut Vec<ModuleField>) {
     for mut item in mem::take(fields) {

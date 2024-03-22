@@ -65,12 +65,22 @@
 //!
 //! [wat]: http://webassembly.github.io/spec/core/text/index.html
 
+#![no_std]
+
 #![deny(missing_docs)]
 
-use std::borrow::Cow;
-use std::fmt;
+extern crate alloc;
+#[cfg(feature = "std")]
+extern crate std;
+
+use alloc::borrow::Cow;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
+use alloc::string::{String, ToString};
+use core::fmt;
+#[cfg(feature = "std")]
 use std::path::{Path, PathBuf};
-use std::str;
+use core::str;
 use wast::lexer::{Lexer, TokenKind};
 use wast::parser::{self, ParseBuffer};
 
@@ -96,10 +106,12 @@ use wast::parser::{self, ParseBuffer};
 /// ```
 ///
 /// [wat]: http://webassembly.github.io/spec/core/text/index.html
+#[cfg(feature = "std")]
 pub fn parse_file(file: impl AsRef<Path>) -> Result<Vec<u8>> {
     _parse_file(file.as_ref())
 }
 
+#[cfg(feature = "std")]
 fn _parse_file(file: &Path) -> Result<Vec<u8>> {
     let contents = std::fs::read(file).map_err(|err| Error {
         kind: Box::new(ErrorKind::Io {
@@ -309,10 +321,12 @@ pub struct Error {
 #[derive(Debug)]
 enum ErrorKind {
     Wast(wast::Error),
+    #[cfg(feature = "std")]
     Io {
         err: std::io::Error,
         file: Option<PathBuf>,
     },
+    #[cfg(feature = "std")]
     Custom {
         msg: String,
         file: Option<PathBuf>,
@@ -333,6 +347,7 @@ impl Error {
     ///
     /// The `file` here will be stored in this error and later rendered in the
     /// `Display` implementation.
+    #[cfg(feature = "std")]
     pub fn set_path<P: AsRef<Path>>(&mut self, file: P) {
         let file = file.as_ref();
         match &mut *self.kind {
@@ -347,12 +362,14 @@ impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &*self.kind {
             ErrorKind::Wast(err) => err.fmt(f),
+            #[cfg(feature = "std")]
             ErrorKind::Custom { msg, file, .. } => match file {
                 Some(file) => {
                     write!(f, "failed to parse `{}`: {}", file.display(), msg)
                 }
                 None => msg.fmt(f),
             },
+            #[cfg(feature = "std")]
             ErrorKind::Io { err, file, .. } => match file {
                 Some(file) => {
                     write!(f, "failed to read from `{}`", file.display())
@@ -367,12 +384,15 @@ impl std::error::Error for Error {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match &*self.kind {
             ErrorKind::Wast(_) => None,
+            #[cfg(feature = "std")]
             ErrorKind::Custom { .. } => None,
+            #[cfg(feature = "std")]
             ErrorKind::Io { err, .. } => Some(err),
         }
     }
 }
 
+#[cfg(feature = "std")]
 #[cfg(test)]
 mod test {
     use super::*;

@@ -1,6 +1,7 @@
 use crate::core::*;
 use crate::token::Index;
 use crate::{gensym, Error};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 mod deinline_import_export;
 mod names;

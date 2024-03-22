@@ -1,6 +1,7 @@
 use crate::parser::{Parse, Parser, Result};
 use crate::token::{self, Span};
 use crate::{annotation, kw};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// A custom section within a wasm module.
 #[derive(Debug)]

@@ -2,6 +2,7 @@ use crate::component::*;
 use crate::kw;
 use crate::parser::{Cursor, Parse, Parser, Peek, Result};
 use crate::token::{Id, Index, LParen, NameAnnotation, Span};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// An `import` statement and entry in a WebAssembly component.
 #[derive(Debug)]

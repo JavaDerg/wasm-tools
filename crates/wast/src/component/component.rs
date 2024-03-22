@@ -5,6 +5,7 @@ use crate::kw;
 use crate::parser::{Parse, Parser, Result};
 use crate::token::Index;
 use crate::token::{Id, NameAnnotation, Span};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// A parsed WebAssembly component module.
 #[derive(Debug)]

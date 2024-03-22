@@ -3,6 +3,7 @@ use crate::core;
 use crate::kw;
 use crate::parser::{Parse, Parser, Result};
 use crate::token::{Id, NameAnnotation, Span};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// A core WebAssembly module to be created as part of a component.
 ///

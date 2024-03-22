@@ -1,7 +1,8 @@
 use crate::core::*;
 use crate::gensym;
 use crate::token::{Index, Span};
-use std::collections::HashMap;
+use hashbrown::HashMap;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 pub fn expand<'a>(fields: &mut Vec<ModuleField<'a>>) {
     let mut expander = Expander::default();

@@ -1,5 +1,6 @@
 use crate::parser::{Cursor, Parse, Parser, Peek, Result};
 use crate::token::Index;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 fn peek<K: Peek>(cursor: Cursor) -> Result<bool> {
     // This is a little fancy because when parsing something like:

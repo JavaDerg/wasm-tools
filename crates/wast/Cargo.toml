@@ -16,11 +16,12 @@ Customizable Rust parsers for the WebAssembly Text formats WAT and WAST
 workspace = true
 
 [dependencies]
-leb128 = { workspace = true }
-unicode-width = "0.1.9"
-memchr = "2.4.1"
+vint64 = { version = "1.0.1", default-features = false }
+unicode-width = { version = "0.1.9", features = ["no_std"] }
+memchr = { version = "2.4.1", default-features = false }
 wasm-encoder = { workspace = true }
-bumpalo = "3.14.0"
+bumpalo = { version = "3.14.0", default-features = false }
+hashbrown = { version = "0.14.3", default-features = false, features = ["ahash", "alloc", "core"] }
 
 [dev-dependencies]
 anyhow = { workspace = true }
@@ -38,6 +39,7 @@ default = ['wasm-module']
 #
 # This feature is turned on by default.
 wasm-module = []
+std = []
 
 [[test]]
 name = "parse-fail"

@@ -1,7 +1,9 @@
 use crate::lexer::LexError;
 use crate::token::Span;
-use std::fmt;
+use core::fmt;
+#[cfg(feature = "std")]
 use std::path::{Path, PathBuf};
+use alloc::{boxed::Box, string::{String, ToString}};
 use unicode_width::UnicodeWidthStr;
 
 /// A convenience error type to tie together all the detailed errors produced by
@@ -21,6 +23,7 @@ pub struct Error {
 #[derive(Debug)]
 struct ErrorInner {
     text: Option<Text>,
+    #[cfg(feature = "std")]
     file: Option<PathBuf>,
     span: Span,
     kind: ErrorKind,
@@ -44,6 +47,7 @@ impl Error {
         let mut ret = Error {
             inner: Box::new(ErrorInner {
                 text: None,
+                #[cfg(feature = "std")]
                 file: None,
                 span,
                 kind: ErrorKind::Lex(kind),
@@ -57,6 +61,7 @@ impl Error {
         let mut ret = Error {
             inner: Box::new(ErrorInner {
                 text: None,
+                #[cfg(feature = "std")]
                 file: None,
                 span,
                 kind: ErrorKind::Custom(message),
@@ -75,6 +80,7 @@ impl Error {
         Error {
             inner: Box::new(ErrorInner {
                 text: None,
+                #[cfg(feature = "std")]
                 file: None,
                 span,
                 kind: ErrorKind::Custom(message),
@@ -105,6 +111,7 @@ impl Error {
     ///
     /// The `path` here will be stored in this error and later rendered in the
     /// `Display` implementation.
+    #[cfg(feature = "std")]
     pub fn set_path(&mut self, path: &Path) {
         if self.inner.file.is_some() {
             return;

@@ -8,6 +8,7 @@ use wasm_encoder::{
     ComponentTypeSection, CoreTypeEncoder, CoreTypeSection, InstanceSection, NameMap,
     NestedComponentSection, RawSection, SectionId,
 };
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 pub fn encode(component: &Component<'_>) -> Vec<u8> {
     match &component.kind {

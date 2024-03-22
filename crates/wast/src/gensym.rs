@@ -1,18 +1,17 @@
 use crate::token::{Id, Span};
 use std::cell::Cell;
+use std::sync::atomic::{AtomicU32, Ordering};
 
-thread_local!(static NEXT: Cell<u32> = Cell::new(0));
+// thread_local!(static NEXT: Cell<u32> = Cell::new(0));
+
+static SYM: AtomicU32 = AtomicU32::new(0);
 
 pub fn reset() {
-    NEXT.with(|c| c.set(0));
+    SYM.store(0, Ordering::Relaxed);
 }
 
 pub fn gen(span: Span) -> Id<'static> {
-    NEXT.with(|next| {
-        let gen = next.get() + 1;
-        next.set(gen);
-        Id::gensym(span, gen)
-    })
+    Id::gensym(span, SYM.fetch_add(1, Ordering::Relaxed))
 }
 
 pub fn fill<'a>(span: Span, slot: &mut Option<Id<'a>>) -> Id<'a> {

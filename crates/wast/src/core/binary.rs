@@ -1,6 +1,7 @@
 use crate::core::*;
 use crate::encode::Encode;
 use crate::token::*;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}};
 
 pub fn encode(
     module_id: &Option<Id<'_>>,

@@ -3,7 +3,8 @@ use crate::core::*;
 use crate::names::{resolve_error, Namespace};
 use crate::token::{Id, Index};
 use crate::Error;
-use std::collections::HashMap;
+use hashbrown::HashMap;
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 pub fn resolve<'a>(fields: &mut Vec<ModuleField<'a>>) -> Result<Resolver<'a>, Error> {
     let mut resolver = Resolver::default();

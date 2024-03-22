@@ -66,11 +66,12 @@ use crate::lexer::{Float, Integer, Lexer, Token, TokenKind};
 use crate::token::Span;
 use crate::Error;
 use bumpalo::Bump;
-use std::borrow::Cow;
-use std::cell::{Cell, RefCell};
-use std::collections::HashMap;
-use std::fmt;
-use std::usize;
+use alloc::borrow::Cow;
+use core::cell::{Cell, RefCell};
+use hashbrown::HashMap;
+use core::fmt;
+use core::usize;
+use alloc::{boxed::Box, vec::Vec, string::{String, ToString}, format};
 
 /// The maximum recursive depth of parens to parse.
 ///

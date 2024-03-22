@@ -3,6 +3,7 @@ use crate::core::{Module, ModuleField, ModuleKind};
 use crate::kw;
 use crate::parser::{Parse, Parser, Result};
 use crate::token::Span;
+use alloc::vec::Vec;
 
 /// A `*.wat` file parser, or a parser for one parenthesized module.
 ///

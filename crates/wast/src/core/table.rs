@@ -2,6 +2,7 @@ use crate::core::*;
 use crate::kw;
 use crate::parser::{Parse, Parser, Peek, Result};
 use crate::token::{Id, Index, LParen, NameAnnotation, Span};
+use alloc::{vec::Vec, boxed::Box, string::{String, ToString}, vec, format};
 
 /// A WebAssembly `table` directive in a module.
 #[derive(Debug)]

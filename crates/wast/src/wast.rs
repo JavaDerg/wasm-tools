@@ -4,6 +4,7 @@ use crate::kw;
 use crate::parser::{self, Cursor, Parse, ParseBuffer, Parser, Peek, Result};
 use crate::token::{Id, Span};
 use crate::{Error, Wat};
+use alloc::{vec::Vec, boxed::Box, string::ToString};
 
 /// A parsed representation of a `*.wast` file.
 ///
